@@ -4,7 +4,7 @@
 ![College Management System](https://via.placeholder.com/800x200?text=College+Management+System) <!-- Replace with your project image -->
 
 ## 🚀 Live Demo
-Check out the live version of the College Management System: [Live Demo](https://your-live-demo-link.com) <!-- Replace with your live demo link -->
+Check out the live version of the College Management System: [Live Demo](https://babureddynr.github.io/spring-html-pages/) <!-- Replace with your live demo link -->
 
 ## 📸 Screenshots
 ![Homepage](https://via.placeholder.com/800x400?text=Homepage) <!-- Replace with actual screenshots -->
