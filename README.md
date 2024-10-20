@@ -79,13 +79,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Thank you for checking out the College Management System! 🎉
 ```
-
-### Customization Notes:
-- Replace placeholder links and images with actual URLs or images from your project.
-- Update the contact information and live demo link accordingly.
-- Feel free to modify any text to match your style or project details better.
-
-### Emojis:
-Using emojis can make your README more engaging and visually appealing. You can adjust them according to your preferences!
-
-This README should provide a clear overview of your project, making it easy for others to understand and use it! Let me know if you need any further modifications or additions!
