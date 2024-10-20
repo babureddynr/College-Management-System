@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Management System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --secondary: #818cf8;
+            --background: #f8fafc;
+            --text: #1e293b;
+            --success: #22c55e;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeInDown 1s;
+        }
+
+        h2 {
+            color: var(--secondary);
+            margin: 2rem 0;
+            font-size: 1.8rem;
+            animation: fadeIn 1s;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s;
+        }
+
+        table, th, td {
+            border: none;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f1f5f9;
+        }
+
+        tr:hover {
+            background-color: #e2e8f0;
+            transform: scale(1.01);
+        }
+
+        .form-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1.2s;
+        }
+
+        input[type="text"] {
+            width: calc(33.33% - 20px);
+            padding: 12px;
+            margin: 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+        }
+
+        input[type="submit"] {
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input[type="submit"]:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        button {
+            background: var(--danger);
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        button:hover {
+            filter: brightness(110%);
+            transform: translateY(-1px);
+        }
+
+        img {
+            border-radius: 8px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        img:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--success);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>College Management System</h1>
+    <h2>College List</h2>
+    <table id="collegeTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Image</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <h2>Add New College</h2>
+    <div class="form-container">
+        <form id="addCollegeForm">
+            <input type="text" id="name" placeholder="College Name" required>
+            <input type="text" id="address" placeholder="Address" required>
+            <input type="text" id="imageUrl" placeholder="Image URL" required>
+            <input type="submit" value="Add College">
+        </form>
+    </div>
+
+    <script>
+        const collegeTableBody = document.querySelector("#collegeTable tbody");
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        function fetchColleges() {
+            fetch('http://localhost:8080/api/colleges')
+                .then(response => response.json())
+                .then(colleges => {
+                    collegeTableBody.innerHTML = '';
+                    colleges.forEach((college, index) => {
+                        const row = document.createElement('tr');
+                        row.style.animation = `fadeIn ${0.3 + index * 0.1}s ease-out`;
+                        row.innerHTML = `
+                            <td>${college.id}</td>
+                            <td>${college.name}</td>
+                            <td>${college.address}</td>
+                            <td><img src="${college.imageUrl}" alt="${college.name}" width="100"></td>
+                            <td><button onclick="deleteCollege(${college.id})">Delete</button></td>
+                        `;
+                        collegeTableBody.appendChild(row);
+                    });
+                });
+        }
+
+        document.getElementById('addCollegeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const address = document.getElementById('address').value;
+            const imageUrl = document.getElementById('imageUrl').value;
+
+            fetch('http://localhost:8080/api/colleges', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, address, imageUrl })
+            })
+            .then(response => response.json())
+            .then(college => {
+                fetchColleges();
+                document.getElementById('addCollegeForm').reset();
+                showToast('College added successfully!');
+            });
+        });
+
+        function deleteCollege(id) {
+            if(confirm('Are you sure you want to delete this college?')) {
+                fetch(`http://localhost:8080/api/colleges/${id}`, {
+                    method: 'DELETE'
+                }).then(() => {
+                    fetchColleges();
+                    showToast('College deleted successfully!');
+                });
+            }
+        }
+
+        fetchColleges();
+    </script>
+</body>
+</html>
