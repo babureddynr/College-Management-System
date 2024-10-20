@@ -1,13 +1,13 @@
 
 # 🎓 College Management System
 
-![College Management System](https://via.placeholder.com/800x200?text=College+Management+System) <!-- Replace with your project image -->
+![College Management System](https://github.com/babureddynr/College-Management-System/blob/main/localhost_8080_index.html%20(1).png) <!-- Replace with your project image -->
 
 ## 🚀 Live Demo
 Check out the live version of the College Management System: [Live Demo](https://babureddynr.github.io/spring-html-pages/) <!-- Replace with your live demo link -->
 
 ## 📸 Screenshots
-![Homepage](https://via.placeholder.com/800x400?text=Homepage) <!-- Replace with actual screenshots -->
+![Homepage](https://github.com/babureddynr/College-Management-System/blob/main/localhost_8080_index.html%20(1).png) <!-- Replace with actual screenshots -->
 
 
 ## 📜 Description
